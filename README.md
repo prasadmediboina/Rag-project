@@ -41,3 +41,29 @@ rag-project/
 │── requirements.txt
 │── .env
 │── README.md
+
+🐳 Docker Setup for RAG Project
+This project is containerized using Docker to ensure a consistent and portable environment for development and deployment.
+
+📌 Overview
+Using Docker, you can:
+Run the RAG application without installing dependencies locally
+Ensure consistency across different systems
+Easily deploy the applicatio
+
+🏗️ Dockerfile
+Create a Dockerfile in the root directory:
+FROM python:3.10-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+EXPOSE 8000
+CMD ["uvicorn", "src.api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+⚙️ .dockerignore
+venv/
+__pycache__/
+*.pyc
+.env
+chroma_db/
