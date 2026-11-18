@@ -1,4 +1,5 @@
-name: Docker Image CI
+name: Build the Docker image
+run: docker build --file ./rag/Dockerfile --tag my-image-name:$(date +%s) ./rag
 
 on:
   push:
